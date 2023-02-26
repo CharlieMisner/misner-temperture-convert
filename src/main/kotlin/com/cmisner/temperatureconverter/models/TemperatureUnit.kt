@@ -1,4 +1,4 @@
-package com.cmisner.temperatureconverter.enums
+package com.cmisner.temperatureconverter.models
 
 enum class TemperatureUnit {
     FAHRENHEIT,

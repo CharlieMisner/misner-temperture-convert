@@ -10,6 +10,7 @@
 	</parent>
 	<groupId>com.cmisner</groupId>
 	<artifactId>temperatureconverter</artifactId>
+	<version>0.0.1</version>
 	<name>temperatureconverter</name>
 	<description>API to Convert Temperature Reading Between Celsius and Fahrenheit</description>
 	<properties>
