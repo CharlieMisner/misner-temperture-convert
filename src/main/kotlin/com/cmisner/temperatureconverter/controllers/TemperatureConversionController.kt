@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class TemperatureConversionController(private val temperatureConversionService: TemperatureConversionService) {
-    @PostMapping("/convert-celsius-to-fahrenehit")
+    @PostMapping("/convert-celsius-to-fahrenheit")
     fun convertCelsiusToFahrenheit(@RequestBody celsiusReading: Double): ConvertedReadingDTO {
         return temperatureConversionService.convertCelsiusToFahrenheit(celsiusReading)
     }
