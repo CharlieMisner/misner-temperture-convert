@@ -1,8 +1,8 @@
-package com.cmisner.temperatureconverter.dto
+package com.cmisner.temperatureconverter.models
 
 import com.cmisner.temperatureconverter.enums.TemperatureUnit
 
-data class ConvertedReadingDTO(
+data class Temperature(
     val temperature: Double,
     val temperatureUnit: TemperatureUnit
 )
