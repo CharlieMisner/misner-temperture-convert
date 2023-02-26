@@ -15,6 +15,12 @@ import org.springframework.stereotype.Service
 @Service
 class TemperatureConversionService(private val temperatureReadingRepository: TemperatureReadingRepository) {
     private val logger = KotlinLogging.logger {  }
+
+    /**
+     * Ingests Celsius reading and converts it to Fahrenheit, stores a record of the reading, and returns the converted value.
+     *
+     * @param celsiusReading: Double
+     */
     fun convertCelsiusToFahrenheit(celsiusReading: Double): ConvertedReadingDTO{
         val fahrenheitConversion: Double = celsiusReading * (5/9) + 32
         logger.info { "Converted $celsiusReading degrees celsius to $fahrenheitConversion degrees fahrenheit" }
@@ -22,6 +28,11 @@ class TemperatureConversionService(private val temperatureReadingRepository: Tem
         return ConvertedReadingDTO(fahrenheitConversion, TemperatureUnit.FAHRENHEIT)
     }
 
+    /**
+     * Ingests Fahrenheit reading and converts it to Celsius, stores a record of the reading, and returns the converted value.
+     *
+     * @param celsiusReading: Double
+     */
     fun convertFahrenheitToCelsius(fahrenheitReading: Double): ConvertedReadingDTO {
         val celsiusConversion: Double = fahrenheitReading * (9/5) - 32
         logger.info { "Converted $fahrenheitReading degrees fahrenheit to $celsiusConversion degrees celsius" }
