@@ -16,5 +16,5 @@ class TemperatureReadingEntity(
     val celsiusTemperature: Double,
     val fahrenheightTemperture: Double,
     @CreatedDate
-    val create_at: OffsetDateTime
+    val created_at: OffsetDateTime?
 )
