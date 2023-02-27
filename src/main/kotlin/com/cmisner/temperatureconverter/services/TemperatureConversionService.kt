@@ -35,13 +35,12 @@ class TemperatureConversionService(private val temperatureReadingRepository: Tem
      * @param celsiusReading: Double
      */
     private fun convertCelsiusToFahrenheit(celsiusReading: Temperature): Temperature{
-        val fahrenheitConversion: Double = roundTemperature(celsiusReading.temperature * 9.0 / 5.0 + 32.0)
-        logger.info { "Converted ${celsiusReading.temperature} degrees celsius to $fahrenheitConversion degrees fahrenheit" }
+        val fahrenheitConversion: Double = roundTemperature(celsiusReading.value * 9.0 / 5.0 + 32.0)
+        logger.info { "Converted ${celsiusReading.value} degrees celsius to $fahrenheitConversion degrees fahrenheit" }
         try {
-            temperatureReadingRepository.save(TemperatureReadingEntity(TemperatureUnit.CELSIUS, celsiusReading.temperature, fahrenheitConversion))
+            temperatureReadingRepository.save(TemperatureReadingEntity(TemperatureUnit.CELSIUS, celsiusReading.value, fahrenheitConversion))
         } catch (e: Exception) {
             logger.error("There was an error saving a celsius temperature reading to the database")
-            logger.error(e.stackTraceToString())
         }
         return Temperature(fahrenheitConversion, TemperatureUnit.FAHRENHEIT)
     }
@@ -52,23 +51,13 @@ class TemperatureConversionService(private val temperatureReadingRepository: Tem
      * @param celsiusReading: Double
      */
     private fun convertFahrenheitToCelsius(fahrenheitReading: Temperature): Temperature {
-        val celsiusConversion: Double = roundTemperature((fahrenheitReading.temperature - 32) * 5 / 9)
-        logger.info { "Converted ${fahrenheitReading.temperature} degrees fahrenheit to $celsiusConversion degrees celsius" }
+        val celsiusConversion: Double = roundTemperature((fahrenheitReading.value - 32) * 5 / 9)
+        logger.info { "Converted ${fahrenheitReading.value} degrees fahrenheit to $celsiusConversion degrees celsius" }
         try {
-            temperatureReadingRepository.save(TemperatureReadingEntity(TemperatureUnit.FAHRENHEIT, celsiusConversion, fahrenheitReading.temperature))
+            temperatureReadingRepository.save(TemperatureReadingEntity(TemperatureUnit.FAHRENHEIT, celsiusConversion, fahrenheitReading.value))
         } catch (e: Exception){
             logger.error("There was an error saving a fahrenheit temperature reading to the database")
-            logger.error(e.stackTraceToString())
         }
         return Temperature(celsiusConversion, TemperatureUnit.CELSIUS)
-    }
-
-    /**
-     * Rounds temperature value to one decimal place for readability, e.g. 12.7778 -> 12.8
-     *
-     * @param temperature: Double
-     */
-    private fun roundTemperature(temperature: Double): Double{
-        return String.format("%.1f", temperature).toDouble()
     }
 }

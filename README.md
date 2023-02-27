@@ -1,5 +1,11 @@
 # Charlie Misner's Temperature Converter
-API that converts temperature readings between Celsius and Fahrenheit
+API that converts temperature readings between Celsius and Fahrenheit.
+
+## Design notes
+Tech Stack: Kotlin, Spring Boot, Postgres
+
+The application and database run in separate containers which are orchestrated locally with docker compose.
+The database should start first followed by the spring boot api container. When 
 
 ## Running The API
 Pre-requisites:
@@ -20,7 +26,7 @@ Ingests temperature readings in either Celsius or Fahrenheit, and converts them.
 
 Request with curl:
 ```
-curl -d '{"temperature": 34.0, "temperatureUnit": "CELSIUS"}' -H 'Content-Type: application/json' http://localhost:8080/convert-temperature
+curl -d '{"value": 34.0, "temperatureUnit": "CELSIUS"}' -H 'Content-Type: application/json' http://localhost:8080/convert-temperature
 ```
 Requests from Insomnia should use the following setup:
 1. Set the request type to `POST`
@@ -28,12 +34,18 @@ Requests from Insomnia should use the following setup:
 3. Select`JSON` for the body, and paste the following sample input:
 ```json
 {
-    "temperature": 34.0,
+    "value": 34.0,
     "temperatureUnit": "CELSIUS"
 }
 ```
 
-### `/last-weeks-average-temperature`
+### `/seven-day-average`
+Will return the temperature average from the last seven days in both Celsius and Fahrenheit.
+This endpoint requires that temperature readings have already been submitted via the `/convert-temperature`
+api endpoint.
+
+Request with curl:
+
 
 ## Running The Tests
 Pre-requisites:

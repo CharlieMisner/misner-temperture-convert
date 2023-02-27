@@ -1,6 +1,6 @@
 package com.cmisner.temperatureconverter.models
 
 data class Temperature(
-    val temperature: Double,
+    val value: Double,
     val temperatureUnit: TemperatureUnit
 )

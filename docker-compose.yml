@@ -1,4 +1,4 @@
-version: '2'
+version: '3.3'
 
 services:
   app:
@@ -9,7 +9,7 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - db
+        - db
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
       - SPRING_DATASOURCE_USERNAME=postgres
@@ -19,6 +19,11 @@ services:
   db:
     image: 'postgres:13.1-alpine'
     container_name: db
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     ports:
       - "5432:5432"
     environment:

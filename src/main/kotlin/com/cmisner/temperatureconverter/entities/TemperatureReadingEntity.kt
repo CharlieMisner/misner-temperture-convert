@@ -19,5 +19,5 @@ class TemperatureReadingEntity(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
     @CreatedDate
-    var created_date: Timestamp? = null
+    var createdDate: Timestamp? = null
 )
