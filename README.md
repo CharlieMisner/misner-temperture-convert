@@ -5,9 +5,8 @@ API that converts temperature readings between Celsius and Fahrenheit.
 Tech Stack: Kotlin, Spring Boot, Postgres
 
 The application and database run in separate containers which are orchestrated locally with docker compose.
-The database should start first, followed by the spring boot api container. If the database container is gracefully
-shutdown, docker will cache data from the past sessions, and it should still be there on the next startup.
-So please factor that in when evaluating my average calculations for correctness :) (see instructions below to connect to database for verification)
+The database should start first, followed by the spring boot api container. If the database container 
+is completely shutdown (with `docker-compose down`) all database data will be cleared.
 
 The Temperature Reading Entity stores both the celsius and fahrenheit values, along with the original unit 
 that was reported (celsisus or fahrenheit). A normal kotlin class is used instead of 
@@ -35,6 +34,22 @@ docker-compose up --build
 ```
 This will build the application, start a containerized postgres instance, then start the application and 
 connect to the database. The api will run on `localhost:8080`.
+
+To stop both containers and clear database data:
+```
+docker-compose down
+```
+
+## Running The Tests
+
+Pre-requisites:
+- Java 17
+- Maven 3.9.0
+
+Run the test suite:
+```
+mvn clean test
+```
 
 ## Using The API
 The application has two endpoints:
@@ -77,14 +92,3 @@ parameters in a database client such as a DBVisualizer:
 - Database URL: `jdbc:postgresql://localhost:5432/postgres`
 - Database Userid: postgres
 - Database Password: postgres
-
-## Running The Tests
-
-Pre-requisites:
-- Java 17
-- Maven 3.9.0
-
-Run the test suite:
-```
-mvn clean test
-```
