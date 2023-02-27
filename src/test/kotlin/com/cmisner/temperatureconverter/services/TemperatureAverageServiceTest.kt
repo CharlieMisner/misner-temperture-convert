@@ -24,7 +24,6 @@ internal class TemperatureAverageServiceTest{
         val temp2 = TemperatureReadingEntity(TemperatureUnit.FAHRENHEIT, 12.8, 55.0)
         val temp3 = TemperatureReadingEntity(TemperatureUnit.FAHRENHEIT, 0.0, 32.0)
 
-        val mockRepositoryResponse = TemperatureReadingEntity(TemperatureUnit.CELSIUS, 30.0, 87.8)
         every { temperatureReadingRepository.findAllWithCreationDateAfter(any())} returns listOf(temp1, temp2, temp3)
 
         val averageTemperature = temperatureAverageService.get7DayAverageTemperature()
