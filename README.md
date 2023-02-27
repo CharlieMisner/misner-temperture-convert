@@ -2,6 +2,26 @@
 API capable of converting temperature readings between Celsius and Fahrenheit, persisting those readings, and reporting
 the average temperature for the past seven days.
 
+## Problem Statement
+
+Create a restful API that can do the following two tasks
+
+- The first task should allow a Fahrenheit temperature to be passed in, it will convert that value to Celsius, it will then save the reading to a database along with the time and conversion value, and return the value as Celsius
+- The second task should allow a Celsius temperature reading to be passed in, it will convert that value to Fahrenheit, it will then save the reading to a database along with the time and conversion value, and return the value as Fahrenheit
+
+The rest API should be able to be run and tested with a rest API tool such as Swagger/OpenAPI, Postman or Insomnia.
+
+The project can be built using language, frameworks, database, and IDE that you prefer.
+
+GIT should be used as the local source control.
+
+At the end of the exercise, zip up the project including the local .git folders and any setup scripts.   Write up a summary to send with the zip file back to your recruiting contact.
+
+Bonus Objectives
+- Use a database within a container (it is ok to restart and lose the data)
+- Deploy the API within a container
+- Add a third API task that calculates the average temperature over the last week and returns the average values in both Fahrenheit and Celsius
+
 ## Design notes
 Tech Stack: Kotlin, Spring Boot, Postgres
 
@@ -96,24 +116,3 @@ parameters in a database client such as a DBVisualizer:
 - Database Password: postgres
 
 The temperature reading records can be found on the db's public schema in a table called `temperature_readings`.
-
-## Problem Statement
-Sunstate Platform Coding Challenge:
-
-Create a restful API that can do the following two tasks
-
-- The first task should allow a Fahrenheit temperature to be passed in, it will convert that value to Celsius, it will then save the reading to a database along with the time and conversion value, and return the value as Celsius
-- The second task should allow a Celsius temperature reading to be passed in, it will convert that value to Fahrenheit, it will then save the reading to a database along with the time and conversion value, and return the value as Fahrenheit
-
-The rest API should be able to be run and tested with a rest API tool such as Swagger/OpenAPI, Postman or Insomnia.
-
-The project can be built using language, frameworks, database, and IDE that you prefer.
-
-GIT should be used as the local source control.
-
-At the end of the exercise, zip up the project including the local .git folders and any setup scripts.   Write up a summary to send with the zip file back to your recruiting contact.
-
-Bonus Objectives
-- Use a database within a container (it is ok to restart and lose the data)
-- Deploy the API within a container
-- Add a third API task that calculates the average temperature over the last week and returns the average values in both Fahrenheit and Celsius
