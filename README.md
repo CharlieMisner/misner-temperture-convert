@@ -39,7 +39,7 @@ Source code is organized as follows. The API layer and operations are encapsulat
 Business logic is encapsulated in Service classes. Persistence operations are handled with Entity and Repository
 classes.
 
-The conversion API endpoint is invoked as a `POST` because of the requirement that each tmeperature reading is persisted.
+The conversion API endpoint is invoked as a `POST` because of the requirement that each temperature reading be persisted.
 The seven-day average endpoint is a read-only operation, therefore is invoked with `GET`.
 
 Also worth noting that I've commited the db credentials in the docker-compose file to make setup easier. For a real 
