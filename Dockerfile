@@ -6,7 +6,7 @@ COPY .mvn .mvn
 COPY pom.xml .
 COPY src src
 
-RUN mvn install -DskipTests
+RUN mvn install
 
 FROM gcr.io/distroless/java17-debian11
 VOLUME /tmp
