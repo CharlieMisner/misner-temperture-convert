@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-alpine as build
+FROM maven:3.8.3-openjdk-17-slim as build
 WORKDIR .
 
 COPY mvnw .
@@ -6,9 +6,9 @@ COPY .mvn .mvn
 COPY pom.xml .
 COPY src src
 
-RUN ./mvnw install -DskipTests
+RUN mvn install -DskipTests
 
-FROM openjdk:17-jdk-alpine
+FROM gcr.io/distroless/java17-debian11
 VOLUME /tmp
 COPY --from=build target/*.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
