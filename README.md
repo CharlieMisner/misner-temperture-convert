@@ -39,7 +39,9 @@ Source code is organized as follows. The API layer and operations are encapsulat
 Business logic is encapsulated in Service classes. Persistence operations are handled with Entity and Repository
 classes.
 
-The conversion API endpoint is invoked as a `POST` because of the requirement that each temperature reading be persisted.
+The problem statement asks that two tasks be possible: 1) convert Celsius->Fahrenheit 2) convert Fahrenheit->Celsius. Both requirements are 
+met with a single API endpoint that accepts a value and a temperature unit, then converts it to the opposite unit. The conversion API 
+endpoint is invoked as a `POST` because of the requirement that each temperature reading be persisted.
 The seven-day average endpoint is a read-only operation, therefore is invoked with `GET`.
 
 Also worth noting that I've commited the db credentials in the docker-compose file to make setup easier. For a real 
@@ -47,8 +49,8 @@ project, I would leverage a secrets manager and would never ever check-in secret
 
 ## Running The API
 Pre-requisites:
-- Docker with running docker daemon
-- docker-compose (compatible with spec version 3.3)
+- Docker (docker daemon must be running)
+- docker-compose (compatible with spec version 2)
 
 Build and run the application:
 ```
@@ -64,11 +66,13 @@ docker-compose down
 
 ## Running The Tests
 
-Pre-requisites:
+The tests run as part of the Docker build, but if you would like to run them outside of the container make sure the 
+following pre-requisites are installed and available on your PATH:
+
 - Java 17
 - Maven 3.9.0
 
-Run the test suite:
+And run the tests with:
 ```
 mvn clean test
 ```
@@ -77,7 +81,8 @@ mvn clean test
 The application has two endpoints:
 
 ### `/convert-temperature`
-Ingests temperature readings in either Celsius or Fahrenheit, and converts them.
+Ingests temperature readings in either Celsius or Fahrenheit, and converts them. Acceptable values for `temperatureUnit`
+are `CELSIUS` or `FAHRENHEIT` in all caps.
 
 Request with curl:
 ```
